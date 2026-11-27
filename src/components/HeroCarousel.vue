@@ -164,12 +164,25 @@ onBeforeUnmount(() => {
   .track { flex-direction: row; }
   .slide::after { background: linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,0) 30%); }
   .logo { height: min(22vh, 46vw); }
-  .ind { left: 24px; right: 24px; top: auto; bottom: calc(26px + env(safe-area-inset-bottom)); width: auto; height: 34px; flex-direction: row; }
-  .ind .num { left: 0; top: 0; transform: none; }
-  .ind .seg { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 1.5px; }
+  /* 아래 가운데 동그란 숫자 버튼 1·2·3 */
+  .ind {
+    left: 50%; right: auto; top: auto; transform: translateX(-50%);
+    bottom: calc(28px + env(safe-area-inset-bottom));
+    width: auto; height: auto; flex-direction: row; gap: 14px;
+  }
+  .ind button {
+    flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,.7); background: rgba(0,0,0,.18);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+  .ind .num { position: static; transform: none; font-size: 15px; opacity: .85; }
+  .ind button.on { background: var(--sand, #F4C478); border-color: var(--sand, #F4C478); color: var(--maroon, #50181A); }
+  .ind button.on .num { opacity: 1; }
+  /* 게이지 선·눈금은 숨김. 자동 넘김 타이머로는 계속 써요(보이지만 않게) */
+  .ind button + button::before { display: none; }
+  .ind .seg { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: 1px; background: transparent; opacity: 0; pointer-events: none; }
   .ind .fill { height: 100%; width: 0; }
-  .ind button + button::before { top: auto; bottom: 0; width: 1.5px; height: 12px; }
-  .ind button + button .num { left: 8px; }
   .ind button.on .fill { animation-name: fillX; }
   .ind button.done .fill { width: 100%; }
 }
