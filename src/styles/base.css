@@ -1,0 +1,14 @@
+:root {
+  --maroon: #50181A;   /* 간판 바탕색 */
+  --sand: #F4C478;     /* 로고 크림색 */
+  --ink: #16110F;
+  --font: "Pretendard Variable", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: #1a1514;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
