@@ -35,9 +35,14 @@
 - 폰트: Pretendard (CDN, `index.html`)
 - 공통 색 변수: `src/styles/base.css`
 - `public/favicon.png`: 로고를 임시로 넣어 둔 파비콘
-- Node.js: Vite 8은 **Node 20.19 이상(권장 22)** 이 필요해요. 사용자 PC는 2026-11-27 기준 Node 18이라 로컬 빌드/개발 서버가 안 돌아가요(업그레이드 필요). GitHub Actions는 Node 22를 써서 배포는 문제없어요.
+- Node.js: Vite 8은 **Node 20.19 이상**이 필요해요. 이 프로젝트는 **Node 26.13.1** 을 써요(`.nvmrc`에 적어 둠).
+  - **중요: Node 26은 이 프로젝트 전용이에요.** 사용자 PC의 기본(전역) Node는 **18.20.8**로 유지해야 해요(다른 프로젝트용). 전역 기본값을 26으로 바꿔 두지 마세요.
+  - 사용자 PC는 **nvm-windows**를 써요(18, 24, 26, 12 설치됨). nvm-windows는 폴더별로 자동 전환이 안 되고, `nvm use`는 PC 전체에 적용돼요. 그래서 이 프로젝트 작업을 시작할 때 `nvm use 26.13.1`, 끝나면 `nvm use 18.20.8`로 되돌려요. Claude가 빌드/실행을 위해 26으로 바꿨다면 작업이 끝날 때 반드시 18로 되돌려 놔요.
+  - Node 버전을 바꾼 뒤 빌드 에러("Cannot find native binding")가 나면 `node_modules`를 지우고 `npm install`을 다시 해요.
+  - GitHub Actions(배포)는 PC와 상관없이 Node 22로 빌드해요.
 
 ## 명령어
+- `nvm use 26.13.1`: 이 프로젝트 작업 전에 먼저 (끝나면 `nvm use 18.20.8`)
 - `npm install`: 처음 한 번
 - `npm run dev`: 개발 서버 (`--host` 옵션이 있어서 같은 와이파이의 휴대폰에서도 접속할 수 있어요)
 - `npm run build`: `dist/`로 빌드
